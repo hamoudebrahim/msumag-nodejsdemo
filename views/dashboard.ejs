@@ -4,45 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Tech Demo</title>
-    <style>
-        body { font-family: sans-serif; background: #f8f9fa; margin: 0; padding: 2rem; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 2rem; }
-        h1 { margin: 0; font-size: 1.5rem; color: #333; }
-        .logout { color: #dc3545; text-decoration: none; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #eee; }
-        th { background: #f1f1f1; color: #555; }
-        tr:hover { background: #fafafa; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Items Dashboard v1</h1>
-            <a href="/logout" class="logout">Logout</a>
-        </header>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% items.forEach(item => { %>
-                    <tr>
-                        <td><%= item.id %></td>
-                        <td><%= item.name %></td>
-                        <td><%= item.description %></td>
-                    </tr>
-                <% }); %>
-                <% if (items.length === 0) { %>
-                    <tr><td colspan="3">No items found in database.</td></tr>
-                <% } %>
-            </tbody>
-        </table>
-    </div>
+<body class="bg-slate-50 min-h-screen">
+    <nav class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="bg-blue-600 p-1.5 rounded-lg text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <span class="text-xl font-bold text-slate-900 tracking-tight">Admin<span class="text-blue-600">Portal</span></span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-slate-500 hidden sm:block">Logged in as <strong>Admin</strong></span>
+                    <a href="/logout" class="bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-700 px-4 py-2 rounded-lg text-sm font-semibold transition-all border border-transparent hover:border-red-100">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Inventory Items</h1>
+                <p class="text-slate-500 text-sm mt-1">Manage and view your database items in real-time.</p>
+            </div>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm">
+                + Add New Item
+            </button>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">ID</th>
+                            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Product Name</th>
+                            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Description</th>
+                            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <% items.forEach(item => { %>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="px-6 py-4 text-sm font-medium text-slate-400">#<%= item.id %></td>
+                                <td class="px-6 py-4 text-sm font-semibold text-slate-900"><%= item.name %></td>
+                                <td class="px-6 py-4 text-sm text-slate-500"><%= item.description %></td>
+                                <td class="px-6 py-4 text-sm text-right">
+                                    <button class="text-blue-600 hover:text-blue-800 font-medium">Edit</button>
+                                </td>
+                            </tr>
+                        <% }); %>
+                        <% if (items.length === 0) { %>
+                            <tr>
+                                <td colspan="4" class="px-6 py-12 text-center text-slate-400 text-sm italic">
+                                    No items found in your Neon database.
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <footer class="mt-8 text-center">
+            <p class="text-slate-400 text-xs">Connected to Neon DB • SSL Secured</p>
+        </footer>
+    </main>
 </body>
 </html>
