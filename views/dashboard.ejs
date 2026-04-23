@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Tech Demo</title>
+    <style>
+        body { font-family: sans-serif; background: #f8f9fa; margin: 0; padding: 2rem; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 2rem; }
+        h1 { margin: 0; font-size: 1.5rem; color: #333; }
+        .logout { color: #dc3545; text-decoration: none; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #eee; }
+        th { background: #f1f1f1; color: #555; }
+        tr:hover { background: #fafafa; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Items Dashboard</h1>
+            <a href="/logout" class="logout">Logout</a>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><%= item.id %></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.description %></td>
+                    </tr>
+                <% }); %>
+                <% if (items.length === 0) { %>
+                    <tr><td colspan="3">No items found in database.</td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
