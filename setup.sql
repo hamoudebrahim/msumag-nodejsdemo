@@ -15,7 +15,7 @@ CREATE TABLE items (
 );
 
 -- Insert sample data (Password is 'password123')
-INSERT INTO users (username, password) VALUES ('admin', '$2a$10$vI8tmv9ay6yVq.Zf7y6GbeKxZ8u/Uo7X4fQk3H6r8hW/pS0hY5Y8.');
+INSERT INTO users (username, password) VALUES ('admin', '$2a$10$Yuj6lmXiTw081OFc.jjVjepr8b16J/iOdHsVKme5pjqVjQeJs/2Zi');
 
 INSERT INTO items (name, description) VALUES 
 ('Neon Starter', 'A lightweight item for the demo.'),
